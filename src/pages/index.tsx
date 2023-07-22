@@ -45,7 +45,7 @@ const Content: React.FC = () => {
 
   const createTopic = api.topic.create.useMutation({
     onSuccess: () => {
-      refetchTopics();
+      void refetchTopics();
     },
   });
 
@@ -56,13 +56,13 @@ const Content: React.FC = () => {
 
   const createNote = api.note.create.useMutation({
     onSuccess: () => {
-      refetchNotes();
+      void refetchNotes();
     },
   });
 
   const deleteNote = api.note.delete.useMutation({
     onSuccess: () => {
-      refetchNotes();
+      void refetchNotes();
     },
   });
 
@@ -112,7 +112,7 @@ const Content: React.FC = () => {
         </div>
         <NoteEditor
           onSave={({ title, content }) => {
-            createNote.mutate({
+            void createNote.mutate({
               title,
               content,
               topicId: selectedTopic?.id ?? "",
